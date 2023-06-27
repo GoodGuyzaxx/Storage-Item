@@ -4,9 +4,14 @@ import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.drawable.ClipDrawable.VERTICAL
+import android.icu.text.StringSearch
 import android.icu.text.Transliterator.Position
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +28,8 @@ class MainActivity : AppCompatActivity() {
     private var list = mutableListOf<Item>()
     private lateinit var adapter: ItemAdapter
     private lateinit var database: AppDatabase
+    private lateinit var editSearch: EditText
+    private lateinit var btnSearch: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +37,8 @@ class MainActivity : AppCompatActivity() {
 
         recycleview = findViewById(R.id.recycler_view)
         fab = findViewById(R.id.fab)
+        editSearch = findViewById(R.id.edit_search)
+        btnSearch = findViewById(R.id.btn_search)
 
         database = AppDatabase.getInstances(applicationContext)
         adapter = ItemAdapter(list)
@@ -65,6 +74,15 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener{
             startActivity(Intent(this,EditorActivity::class.java))
         }
+
+        btnSearch.setOnClickListener {
+            if (editSearch.text.isNotEmpty()){
+                searchData(editSearch.text.toString())
+            }else {
+                getData()
+                Toast.makeText(applicationContext,"Silahkan Di isi", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onResume() {
@@ -76,6 +94,13 @@ class MainActivity : AppCompatActivity() {
     fun getData(){
         list.clear()
         list.addAll(database.itemDao().getAll())
+        adapter.notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun searchData(search: String){
+        list.clear()
+        list.addAll(database.itemDao().searchByName(search))
         adapter.notifyDataSetChanged()
     }
 }

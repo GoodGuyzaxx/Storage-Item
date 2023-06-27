@@ -1,5 +1,6 @@
 package id.zaxx.storageitemxml.data.dao
 
+import android.icu.text.StringSearch
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -11,6 +12,9 @@ import id.zaxx.storageitemxml.data.entity.Item
 interface ItemDao {
     @Query("SELECT * FROM item")
     fun getAll(): List<Item>
+
+    @Query("SELECT * FROM item WHERE item_name LIKE '%' || :search || '%' ")
+    fun searchByName(search: String): List<Item>
 
     @Query("SELECT * FROM item WHERE uid IN (:userIds)")
     fun loadAllByIds(userIds: IntArray): List<Item>
