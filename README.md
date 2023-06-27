@@ -1,0 +1,1 @@
+Gk tau ini apa
