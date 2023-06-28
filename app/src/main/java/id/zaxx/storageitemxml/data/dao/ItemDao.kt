@@ -10,7 +10,7 @@ import id.zaxx.storageitemxml.data.entity.Item
 
 @Dao
 interface ItemDao {
-    @Query("SELECT * FROM item")
+    @Query("SELECT * FROM item ORDER BY item_name ASC")
     fun getAll(): List<Item>
 
     @Query("SELECT * FROM item WHERE item_name LIKE '%' || :search || '%' ")

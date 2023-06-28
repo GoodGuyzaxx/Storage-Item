@@ -83,6 +83,15 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Silahkan Di isi", Toast.LENGTH_SHORT).show()
             }
         }
+
+        editSearch.setOnKeyListener { v, keyCode, event ->
+            if (editSearch.text.isNotEmpty()){
+                searchData(editSearch.text.toString())
+            }else{
+                getData()
+            }
+            false
+        }
     }
 
     override fun onResume() {

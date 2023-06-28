@@ -3,6 +3,7 @@
     <string name="nama_barang">Nama Barang</string>
     <string name="save">Save</string>
     <string name="info_barang">Nama Pemilik</string>
+    <string name="search">Search</string>
     <string-array name="items_options">
         <item>Ubah</item>
         <item>Hapus</item>
