@@ -1,1 +1,1 @@
-Gk tau ini apa
+Cuma Latihan CRUD aja sihh ini
