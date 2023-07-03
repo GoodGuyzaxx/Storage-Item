@@ -21,6 +21,8 @@ import id.zaxx.storageitemxml.adapter.ItemAdapter
 import id.zaxx.storageitemxml.data.AppDatabase
 import id.zaxx.storageitemxml.data.entity.Item
 
+// TODO: Menampilkan Gambar dari Room DB.
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var recycleview : RecyclerView

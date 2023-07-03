@@ -8,6 +8,8 @@ import android.widget.Toast
 import id.zaxx.storageitemxml.data.AppDatabase
 import id.zaxx.storageitemxml.data.entity.Item
 
+
+// TODO: Buatkan Fitur Dimana fungsi tersebut dapat menypimpan file image dan di insert ko Room DB, 
 class EditorActivity : AppCompatActivity() {
     private lateinit var itemName : EditText
     private lateinit var infoItem : EditText
